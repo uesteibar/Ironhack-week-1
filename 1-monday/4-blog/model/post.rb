@@ -17,3 +17,14 @@ class Post
 	end
 
 end
+
+class Sponsored_Post < Post
+
+	def format
+		content = "******** #{@title} ********\n"
+		content += "****************\n"
+		content += @content + "\n"
+		content += "----------------\n"
+	end
+
+end
