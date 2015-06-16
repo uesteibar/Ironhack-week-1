@@ -20,18 +20,14 @@ class Blog
 	def publish_front_page
 		post_limit = 3
 		pages = (@posts.length / post_limit.to_f).ceil
-
-		sort_posts
-
 		next_page = 1
 
+		sort_posts
 
 		while next_page != 0 && next_page <= pages
 			first_post = (next_page - 1)*post_limit
 			print_page(@posts[first_post..(first_post + post_limit - 1)])
-			print_footer(post_limit, next_page)
-
-			next_page += 1
+			next_page = print_footer(post_limit, next_page)
 		end
 
 	end
@@ -41,7 +37,7 @@ class Blog
 		posts.take_while{ |p| 1 != nil }.each do |post|
 			content << post.format
 		end
-		puts content
+		puts "\n" + content + "\n"
 	end
 
 	def print_footer(post_limit, current_page)
@@ -55,17 +51,26 @@ class Blog
 			end
 		end
 
+		puts "\nNavigate using ARROW-KEYS. Press ESC to exit\n"
+
 		change_page(pages, current_page)
 
 	end
 
 	def change_page(pages, current_page)
 		pressed_key = KeyPress.read_char
-		puts pressed_key
 
-		while pressed_key != "\r"
+		while pressed_key != "\e[C" && pressed_key != "\e[D" &&  pressed_key != "\e"
 			pressed_key = KeyPress.read_char
 		end
+		if  pressed_key == "\e[D"
+			return current_page - 1
+		elsif pressed_key == "\e[C"
+			return current_page + 1
+		elsif pressed_key == "\e"
+			return 0
+		end
+
 	end
 
 	def sort_posts
