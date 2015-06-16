@@ -20,7 +20,7 @@ module EvaluableInput
 			end
 			return nil
 		elsif input.upcase.start_with?("DROP ")
-			player.drop_object(input[5, input.size])
+			player.drop_object(input[5, input.size], self)
 			return nil
 		elsif input == "EXIT"
 			puts "\nGOODBYE BRO!"

@@ -12,9 +12,10 @@ class Player
 		puts "you picked up #{object.downcase}!"
 	end
 
-	def drop_object(object)
+	def drop_object(object, scenario)
 		if has_object(object)
 			@objects.delete(object.downcase)
+			scenario.object = object.downcase
 			puts "you droped #{object.downcase}"
 		else
 			puts "you don't have that object"
