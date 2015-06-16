@@ -40,6 +40,8 @@ class Game
 
 	def turn_prompt(scenario_index)
 		puts "\n#{@scenarios[scenario_index].description}"
+		exits = @scenarios[scenario_index].exits.select{ |k, v| v != -1 }.keys.reduce("") do |sum, exit| sum += " - #{exit.to_s}" end
+		puts "Exits:#{exits} -"
 		print "> "
 		return gets.chomp.upcase
 	end
