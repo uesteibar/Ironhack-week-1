@@ -18,22 +18,27 @@ class Blog
 	end
 
 	def publish_front_page
-		post_limit = 2
+		post_limit = 3
+		pages = (@posts.length / post_limit.to_f).ceil
 
 		sort_posts
 
 		next_page = 1
-		@posts.each_slice(post_limit) { |slice|
-			print_page(slice)
+
+
+		while next_page != 0 && next_page <= pages
+			first_post = (next_page - 1)*post_limit
+			print_page(@posts[first_post..(first_post + post_limit - 1)])
 			print_footer(post_limit, next_page)
 
 			next_page += 1
-		}
+		end
+
 	end
 
 	def print_page(posts)
 		content = ""
-		posts.each do |post|
+		posts.take_while{ |p| 1 != nil }.each do |post|
 			content << post.format
 		end
 		puts content
