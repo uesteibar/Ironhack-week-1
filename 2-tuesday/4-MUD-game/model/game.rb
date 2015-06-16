@@ -28,7 +28,7 @@ class Game
 		choice = ""
 		while choice != "EXIT" do
 			choice = turn_prompt(@current_scenario)
-			next_scenario = @scenarios[@current_scenario].evaluate_input(choice)
+			next_scenario = @scenarios[@current_scenario].evaluate_input(choice, @player)
 			if next_scenario != nil
 				@current_scenario = next_scenario
 			end
@@ -40,6 +40,9 @@ class Game
 
 	def turn_prompt(scenario_index)
 		puts "\n#{@scenarios[scenario_index].description}"
+		if @scenarios[scenario_index].object
+			puts "You can see a #{@scenarios[scenario_index].object}"
+		end
 		exits = @scenarios[scenario_index].exits.select{ |k, v| v != -1 }.keys.reduce("") do |sum, exit| sum += " - #{exit.to_s}" end
 		puts "Exits:#{exits} -"
 		print "> "

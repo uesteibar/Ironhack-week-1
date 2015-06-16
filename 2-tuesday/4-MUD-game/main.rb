@@ -14,6 +14,7 @@ game.scenario(white_room)
 dark_room = Scenario.new("You are in a dark room. There's a door at the west.", {W: 2, S: 0})
 dark_room.message_action("switch lights on", "it's not gonna be that easy")
 dark_room.look_around_message("It's dark bro, what the hell do you expect to see?")
+dark_room.object = "lintern"
 game.scenario(dark_room)
 
 red_room = RedScenario.new({S: 0, E: 1, W: 3}, 0)
