@@ -1,9 +1,8 @@
 
 class Car
-	attr_accessor :wheels
 
-	def initialize
-		@wheels = 4
+	def wheels
+		return 4
 	end
 
 	def sound
@@ -13,10 +12,9 @@ class Car
 end
 
 class Bike
-	attr_accessor :wheels
 
-	def initialize
-		@wheels = 2
+	def wheels
+		return 2
 	end
 
 	def sound
@@ -26,10 +24,9 @@ class Bike
 end
 
 class MotorBike
-	attr_accessor :wheels
-
-	def initialize
-		@wheels = 2
+	
+	def wheels
+		return 2
 	end
 
 	def sound

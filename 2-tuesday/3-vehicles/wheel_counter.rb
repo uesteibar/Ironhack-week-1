@@ -2,7 +2,9 @@
 class WheelCounter
 
 	def self.print(vehicles)
-		wheel_number = vehicles.inject(0){|sum,v| sum += v.wheels }
+		wheel_number = vehicles.reduce(0) do |sum, v|
+			sum + v.wheels
+		end
 		puts wheel_number
 	end
 
