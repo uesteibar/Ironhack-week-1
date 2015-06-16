@@ -25,9 +25,10 @@ end
 
 class BarScenario < Scenario
 
-	def initialize(description, exits)
-		super(description, exits)
+	def initialize(exits)
+		super("You are in a bar. It's full of people.", exits)
 		@method_actions = {"PEOPLE.EACH DO KILL" => :fight}
+		look_around_message("there's no scape, you're gonna need to fight.")
 	end
 
 	def fight
@@ -42,15 +43,32 @@ end
 
 class BlueScenario < Scenario
 
-	def initialize(description, exits, next_room)
-		super(description, exits)
+	def initialize(exits, next_room)
+		super("You are in a blue room. It feels quiet. There's an aggressive a dog. Be brave.", exits)
 		@method_actions = {"PET" => :pet}
+		look_around_message("there's no scape... careful with that dog.")
 		@next_room = next_room
 	end
 
 	def pet
 		puts "you got a new friend!"
-		@message_actions["LOOK AROUND"] = "you got a new friend!"
+
+		return @next_room
+	end
+	
+end
+
+class RedScenario < Scenario
+
+	def initialize(exits, next_room)
+		super("You are in a red room. It's all covered by blood.", exits)
+		@method_actions = {"CLEAN" => :clean}
+		look_around_message("WTF happened here? This place needs a clean up")
+		@next_room = next_room
+	end
+
+	def clean
+		puts "wow! good clean up! Now it looks like the white room..."
 
 		return @next_room
 	end

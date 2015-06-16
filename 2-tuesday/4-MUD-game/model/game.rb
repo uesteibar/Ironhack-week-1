@@ -20,7 +20,11 @@ class Game
 	end
 
 	def start
-		puts "\nHello #{@player.name}!!"
+		puts "\nHello #{@player.name}!! Let's start playing!!"
+		puts "\nSome instructions:"
+		puts "\t- You can move using N, S, E, W"
+		puts "\t- Type 'look around' to... that's right, look around!"
+		puts "\t- HAVE FUN!!\n"
 		choice = ""
 		while choice != "EXIT" do
 			choice = turn_prompt(@current_scenario)
