@@ -1,8 +1,12 @@
 
 class WheelCounter
 
-	def self.print(vehicles)
-		wheel_number = vehicles.reduce(0) do |sum, v|
+	def initialize(vehicles)
+		@vehicles = vehicles
+	end
+
+	def print
+		wheel_number = @vehicles.reduce(0) do |sum, v|
 			sum + v.wheels
 		end
 		puts wheel_number

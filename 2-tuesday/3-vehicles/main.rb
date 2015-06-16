@@ -5,6 +5,6 @@ require "./noise_maker"
 
 vehicles = [Car.new, Bike.new, MotorBike.new]
 
-WheelCounter.print(vehicles)
-NoiseMaker.print(vehicles)
+WheelCounter.new(vehicles).print
+NoiseMaker.new(vehicles).print
 
