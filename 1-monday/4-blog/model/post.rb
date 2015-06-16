@@ -18,7 +18,7 @@ class Post
 
 end
 
-class Sponsored_Post < Post
+class SponsoredPost < Post
 
 	def format
 		content = "******** #{@title} ********\n"
