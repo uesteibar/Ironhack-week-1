@@ -1,9 +1,11 @@
-require "pry"
+
 class Keynote
 
-	def initialize(generator)
+	def initialize(generator, input_provider)
 		@generator = generator
 		@actions = {"next" => 1, "previous" => -1}
+		@input_providers = {}
+		@input_provider = input_provider
 	end
 
 	def start
@@ -23,11 +25,17 @@ class Keynote
 		end
 	end
 
-	def ask_for_next_slide
-		print ">"
-		input = gets.chomp.downcase
+	def add_input_provider(trigger, input_provider)
+		@input_providers[trigger] = input_provider
+	end
 
-		if @actions[input]
+	def ask_for_next_slide
+		input = @input_provider.input
+
+		if @input_providers[input]
+			@input_provider = @input_providers[input]
+			return 0
+		elsif @actions[input]
 			return @actions[input]
 		else
 			return 0

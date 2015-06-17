@@ -1,7 +1,7 @@
 
 require "terminfo"
 
-class SlideFormatter
+class StandardFormatter
 
 	def format(plain_slides) 
 		formated_slides = plain_slides.map { |slide| slide = center_slide(slide) }

@@ -1,12 +1,20 @@
 
-require "./formatter/slide_formatter"
+require "./formatter/standard_formatter"
+require "./formatter/multiline_formatter"
 require "./generator/slide_generator"
 require "./parser/slide_parser"
 require "./model/keynote"
+require "./input/standard_input"
+require "./input/auto_input"
+require "./input/always_next_input"
 
 parser = SlideParser.new("----")
-formatter = SlideFormatter.new
-generator = SlideGenerator.new("./keynotes/sample_keynote", parser, formatter)
-keynote = Keynote.new(generator)
+formatter = MultilineFormatter.new
+generator = SlideGenerator.new("./keynotes/multiline_keynote", parser, formatter)
+
+keynote = Keynote.new(generator, StandardInput.new)
+
+keynote.add_input_provider("auto", AutoInput.new)
+keynote.add_input_provider("always next", AlwaysNextInput.new)
 
 keynote.start
