@@ -4,11 +4,11 @@ require "terminfo"
 class StandardFormatter
 
 	def format(plain_slides) 
-		formated_slides = plain_slides.map { |slide| slide = center_slide(slide) }
+		formated_slides = plain_slides.map { |slide| slide = format_slide(slide) }
 		return formated_slides
 	end
 
-	def center_slide(slide)
+	def format_slide(slide)
 		slide = center_horizontal(slide)
 		slide = center_vertical(slide)
 		return slide
