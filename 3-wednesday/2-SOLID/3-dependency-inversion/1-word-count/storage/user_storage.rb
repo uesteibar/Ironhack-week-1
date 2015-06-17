@@ -6,8 +6,8 @@ class UserStorage
 		# here is the implementation on how we get our users
 		users = []
 		IO.read("./storage/users").split(/\n/).each do |line|
-			splitted_line = line.split(",")
-			users << User.new(splitted_line[0], splitted_line[1])
+			split_line = line.split(",")
+			users << User.new(split_line[0], split_line[1])
 		end
 
 		return users
