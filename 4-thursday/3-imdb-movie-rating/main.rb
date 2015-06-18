@@ -1,6 +1,12 @@
 
 require "./api_access/movie_retriever"
+require "./input/file_input_reader"
+require "./logger/cmd_logger"
 
-movie = MovieRetriever.new.search_first("matrix revolutions")
+logger = CmdLogger.new
+input = FileInputReader.new("./input/files/movies_to_search")
+movies = MovieRetriever.new(logger).search_multiple(input)
 
-puts movie.inspect
+movies.each do |movie|
+	puts movie.inspect
+end
