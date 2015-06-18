@@ -1,6 +1,7 @@
 
 require "imdb"
 require "./model/movie"
+require "./collection/movie_collection"
 
 class MovieRetriever
 
@@ -19,9 +20,9 @@ class MovieRetriever
 	end
 
 	def search_multiple(input_provider)
-		movies = []
+		movies = MovieCollection.new
 		input_provider.get.each do |search_text|
-			movies << search_first(search_text)
+			movies.add_movie(search_first(search_text))
 		end
 		movies
 	end
