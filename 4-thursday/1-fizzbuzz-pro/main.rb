@@ -1,8 +1,11 @@
 
 class FizzBuzz
 
-	def initialize
-		@keywords = {}
+	attr_writer :keywords, :condition
+
+	def initialize(keywords, condition)
+		@keywords = keywords
+		@condition = condition
 	end
 
 	def run
@@ -11,16 +14,8 @@ class FizzBuzz
 		end
 	end
 
-	def keywords=(keywords)
-		@keywords = keywords
-	end
-
 	def add_keyword(trigger, word)
 		@keywords[trigger] = word
-	end
-
-	def condition=(lambda)
-		@condition = lambda
 	end
 
 	def check_number(number)
@@ -39,11 +34,11 @@ class FizzBuzz
 
 end
 
-fizzbuzz = FizzBuzz.new
+keywords = {3 => "fizz", 5 => "buzz"}
+condition = -> (number, key) { (number % key) == 0 }
 
-fizzbuzz.keywords = {3 => "fizz", 5 => "buzz"}
+fizzbuzz = FizzBuzz.new(keywords, condition)
+
 fizzbuzz.add_keyword(7, "fluzzzz")
-
-fizzbuzz.condition = -> (number, key) { (number % key) == 0 }
 
 fizzbuzz.run
