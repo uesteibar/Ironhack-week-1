@@ -1,4 +1,4 @@
-
+require "pry"
 class Keynote
 
 	def initialize(generator, input_provider)
@@ -14,7 +14,7 @@ class Keynote
 		previous_slide = 0
 
 		while next_slide
-			if slides[next_slide]
+			if !slides[next_slide]
 				next_slide = 0
 			end
 			slides[next_slide].show
