@@ -40,12 +40,10 @@ class FizzBuzz
 end
 
 fizzbuzz = FizzBuzz.new
-keywords = {3 => "fizz", 5 => "buzz"}
-fizzbuzz.keywords = keywords
 
+fizzbuzz.keywords = {3 => "fizz", 5 => "buzz"}
 fizzbuzz.add_keyword(7, "fluzzzz")
 
-custom_lambda = -> (number, key) { (number % key) == 0 }
-fizzbuzz.condition = (custom_lambda)
+fizzbuzz.condition = -> (number, key) { (number % key) == 0 }
 
 fizzbuzz.run
