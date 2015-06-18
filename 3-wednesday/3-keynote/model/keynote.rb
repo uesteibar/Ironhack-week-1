@@ -14,14 +14,12 @@ class Keynote
 		previous_slide = 0
 
 		while next_slide
-			begin
-				slides[next_slide].show
-				previous_slide = next_slide
-				next_slide += ask_for_next_slide
-			rescue NoMethodError
+			if slides[next_slide]
 				next_slide = 0
 			end
-			
+			slides[next_slide].show
+			previous_slide = next_slide
+			next_slide += ask_for_next_slide
 		end
 	end
 

@@ -15,7 +15,7 @@ class CLI
 		puts "\t2 - Multiline keynote"
 		puts "\t3 - Super Awesome keynote"
 		print "\n> "
-		return gets.chomp.to_i
+		gets.chomp.to_i
 	end
 
 	def action(option)

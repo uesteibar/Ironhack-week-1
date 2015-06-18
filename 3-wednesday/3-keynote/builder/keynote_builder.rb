@@ -23,7 +23,7 @@ class KeynoteBuilder
 		@input_providers.each do |trigger, provider|
 			keynote.add_input_provider(trigger, provider)
 		end
-		return keynote
+		keynote
 	end
 
 	def add_input_provider(trigger, input_provider)

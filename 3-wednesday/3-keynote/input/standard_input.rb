@@ -1,7 +1,7 @@
 
 class StandardInput
 	def input
-		print ">"
+		print "> "
 		return gets.chomp.downcase
 	end
 end
