@@ -9,18 +9,8 @@ require "./validator/queen_validator"
 require "./validator/pawn_validator"
 require "./generator/piece_maker"
 require "./input/parser/board_parser"
-
-matrix = [
-			[:bN, nil, nil, nil, nil, nil, nil, :bR],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[:bK, nil, nil, nil, nil, nil, nil, nil],
-			[:wR, nil, nil, nil, nil, nil, nil, nil],
-		]
-
+require "./input/parser/move_parser"
+require "./moves_checker"
 
 piece_validators = {
 	"R" => RookValidator,
@@ -31,13 +21,7 @@ piece_validators = {
 	"P" => PawnValidator
 }
 
-# board = Board.new(piece_validators, BoardParser.new("./input/files/simple_board").parse)
-board = Board.new(piece_validators, matrix)
+board = Board.new(piece_validators, BoardParser.new("./input/files/simple_board").parse)
+moves = MoveParser.new("./input/files/simple_moves").parse
 
-white_pawn = PieceMaker.new(piece_validators).generate(:wP)
-
-puts white_pawn.can_move?(board, {line: 0, column: 0}, {line: 1, column: 0})
-
-# puts white_queen.can_move?(board, {line: 0, column: 0}, {line: 2, column: 2})
-# puts white_queen.can_move?(board, {line: 1, column: 0}, {line: 7, column: 6})
-# puts white_queen.can_move?(board, {line: 0, column: 0}, {line: 6, column: 0})
+MovesChecker.new(board, moves).check

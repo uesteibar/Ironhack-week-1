@@ -23,5 +23,4 @@ class BoardParser
 		end
 	end
 	
-	
 end
