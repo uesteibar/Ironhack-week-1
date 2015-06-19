@@ -1,6 +1,12 @@
 
 module MovableStraight
 
+	def valid_straight_move?(team, initial, heading)
+		straight_move?(initial, heading) && free_road?(team, initial, heading)
+	end
+
+	private
+
 	def free_road?(team, initial, heading)
 		if heading[:line] == initial[:line]
 			free_line?(initial[:line], initial[:column], heading[:column])
@@ -31,6 +37,10 @@ module MovableStraight
 			end
 		end
 		return true
+	end
+
+	def straight_move?(initial, heading)
+		heading[:line] == initial[:line] || heading[:column] == initial[:column]
 	end
 
 end

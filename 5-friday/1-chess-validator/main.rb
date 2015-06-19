@@ -1,23 +1,15 @@
 
 require "./model/board"
-require "./model/pieces/rook"
+require "./model/piece"
 require "./validator/rook_validator"
+require "./validator/king_validator"
+require "./validator/knight_validator"
 require "./generator/piece_maker"
-
-# @matrix = [
-		# 	[:bR, :bN, :bB, :bQ, :bK, :bB, :bN, :bR],
-		# 	[:bP, :bP, :bP, :bP, :bP, :bP, :bP, :bP],
-		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
-		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
-		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
-		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
-		# 	[:wP, :wP, :wP, :wP, :wP, :wP, :wP, :wP],
-		# 	[:wR, :wN, :wB, :wQ, :wK, :wB, :wN, :wR]
-		# ]
+require "./input/parser/board_parser"
 
 matrix = [
-			[:bR, nil, nil, nil, nil, nil, nil, :bR],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[:bN, nil, nil, nil, nil, nil, nil, :bR],
+			[:wK, :bR, nil, nil, nil, nil, nil, nil],
 			[nil, nil, nil, nil, nil, nil, nil, nil],
 			[nil, nil, nil, nil, nil, nil, nil, nil],
 			[nil, nil, nil, nil, nil, nil, nil, nil],
@@ -27,14 +19,17 @@ matrix = [
 		]
 
 
-piece_keys = {
-	"R" => [Rook, RookValidator]
+piece_validators = {
+	"R" => RookValidator,
+	"K" => KingValidator,
+	"N" => KnightValidator
 }
 
-board = Board.new(piece_keys, matrix)
+# board = Board.new(piece_keys, BoardParser.new("./input/files/simple_board").parse)
+board = Board.new(piece_validators, matrix)
 
-black_rook = PieceMaker.new(piece_keys).generate(:bR)
+white_knight = PieceMaker.new(piece_validators).generate(:wN)
 
-puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 0, column: 7})
-puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 6, column: 0})
-puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 7, column: 0})
+puts white_knight.can_move?(board, {line: 0, column: 0}, {line: 1, column: 2})
+puts white_knight.can_move?(board, {line: 0, column: 0}, {line: 1, column: 0})
+puts white_knight.can_move?(board, {line: 0, column: 0}, {line: 2, column: 1})

@@ -1,15 +1,17 @@
 
 class PieceMaker
 
-	def initialize(piece_shortnames)
-		@piece_shortnames = piece_shortnames
+	def initialize(piece_validators)
+		@piece_validators = piece_validators
 	end
 
 	def generate(symbol)
 		symbol = symbol.to_s
 		team = choose_team(symbol)
-		return create_piece(team, symbol)
+		Piece.new(team, get_validator(symbol[1]))
 	end
+
+	private
 
 	def choose_team(symbol)
 		case symbol[0]
@@ -20,19 +22,11 @@ class PieceMaker
 		end
 	end
 
-	def create_piece(team, symbol)
-		if @piece_shortnames[symbol[1]]
-			return piece_class(symbol).new(team, piece_validator(symbol))
+	def get_validator(key)
+		if @piece_validators[key]
+			return @piece_validators[key]
 		end
 		nil
-	end
-
-	def piece_class(symbol)
-		@piece_shortnames[symbol[1]][0]
-	end
-
-	def piece_validator(symbol)
-		@piece_shortnames[symbol[1]][1]
 	end
 	
 end
