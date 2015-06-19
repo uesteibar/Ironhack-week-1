@@ -3,21 +3,13 @@ class Board
 
 	attr_reader :matrix
 
-	def initialize
-		@matrix = [
-			[:bR, :bN, :bB, :bQ, :bK, :bB, :bN, :bR],
-			[:bP, :bP, :bP, :bP, :bP, :bP, :bP, :bP],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
-			[:wP, :wP, :wP, :wP, :wP, :wP, :wP, :wP],
-			[:wR, :wN, :wB, :wQ, :wK, :wB, :wN, :wR]
-		]
+	def initialize(piece_keys, matrix)
+		@matrix = matrix
+		@piece_keys = piece_keys
 	end
 
 	def piece_in(line, column)
-		@matrix[line, column]
+		PieceMaker.new(@piece_keys).generate(@matrix[line][column])
 	end
 
 	def lines

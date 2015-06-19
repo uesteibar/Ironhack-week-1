@@ -1,10 +1,39 @@
 
 require "./model/board"
-require "./validator/king_validator"
+require "./model/pieces/rook"
+require "./validator/rook_validator"
+require "./generator/piece_maker"
 
-board = Board.new
+# @matrix = [
+		# 	[:bR, :bN, :bB, :bQ, :bK, :bB, :bN, :bR],
+		# 	[:bP, :bP, :bP, :bP, :bP, :bP, :bP, :bP],
+		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
+		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
+		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
+		# 	[nil, nil, nil, nil, nil, nil, nil, nil],
+		# 	[:wP, :wP, :wP, :wP, :wP, :wP, :wP, :wP],
+		# 	[:wR, :wN, :wB, :wQ, :wK, :wB, :wN, :wR]
+		# ]
 
-king_validator = KingValidator.new(board)
+matrix = [
+			[:bR, nil, nil, nil, nil, nil, nil, :bR],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[:wR, nil, nil, nil, nil, nil, nil, nil],
+			[nil, nil, nil, nil, nil, nil, nil, nil],
+		]
 
-puts king_validator.valid_move?({line: 0, column: 0}, {line: 0, column: 7})
-puts king_validator.valid_move?({line: 1, column: 0}, {line: 0, column: 2})
+
+piece_keys = {
+	"R" => [Rook, RookValidator]
+}
+
+board = Board.new(piece_keys, matrix)
+
+black_rook = PieceMaker.new(piece_keys).generate(:bR)
+
+puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 0, column: 7})
+puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 6, column: 0})
