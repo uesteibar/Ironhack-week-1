@@ -23,7 +23,7 @@ matrix = [
 			[nil, nil, nil, nil, nil, nil, nil, nil],
 			[nil, nil, nil, nil, nil, nil, nil, nil],
 			[:wR, nil, nil, nil, nil, nil, nil, nil],
-			[nil, nil, nil, nil, nil, nil, nil, nil],
+			[:wR, nil, nil, nil, nil, nil, nil, nil],
 		]
 
 
@@ -37,3 +37,4 @@ black_rook = PieceMaker.new(piece_keys).generate(:bR)
 
 puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 0, column: 7})
 puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 6, column: 0})
+puts black_rook.can_move?(board, {line: 0, column: 0}, {line: 7, column: 0})

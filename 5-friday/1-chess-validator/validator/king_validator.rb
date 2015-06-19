@@ -1,9 +1,7 @@
 
-class KingValidator
+require "./validator/validator"
 
-	def initialize(board)
-		@board = board
-	end
+class KingValidator < Validator
 	
 	def valid_move?(initial, heading)
 		if valid_position?(initial, heading)
