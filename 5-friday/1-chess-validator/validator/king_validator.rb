@@ -1,6 +1,5 @@
 
 require "./validator/validator"
-require "pry"
 
 class KingValidator < Validator
 	

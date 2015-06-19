@@ -8,7 +8,10 @@ class PieceMaker
 	def generate(symbol)
 		symbol = symbol.to_s
 		team = choose_team(symbol)
-		Piece.new(team, get_validator(symbol[1]))
+		if get_validator(symbol[1])
+			return Piece.new(team, get_validator(symbol[1]))
+		end
+		nil
 	end
 
 	private
